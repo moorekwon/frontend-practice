@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="myId" class="class1 class2" style="color: red;">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <input type="text" value="100">
+
+    <script>
+        // querySelector -> 인수로 css문법(선택자)을 받음
+        const $ul = document.querySelector('#myId');
+
+        // getElementById -> 인수로 id 값만 받음(id 값의 식별자를 전역변수로 만들어버림. 비권장)
+        const $ul = document.getElementById('myId');
+
+        $ul.style.color = 'blue';
+
+        // 배열로 호출
+        console.log([... $ul.classList].forEach(item => console.log(item)));
+        console.log([ ... $ul.classList].forEach(function (item) { console.log(item); }));
+
+        console.log($ul.classList.add('class3'));
+        console.log($ul.classList.remove('class3'));
+        console.log($ul.classList.contains('class3'));
+
+        // Nodelist
+        const $lis = document.querySelectorAll('li');
+        console.log($lis);
+        [ ... $lis].forEach(($li, i) => $li.classList.add(`class${i + 1}`));
+
+        // innerHTML
+        console.log(document.querySelector('#myId').innerHTML);
+        document.querySelector('#myId').innerHTML += '<h1>Hello</h1>';
+
+
+        // 탐색
+        const $li = document.querySelector('li');
+        // nextElementSibling -> 함수가 아니라 프로퍼티
+        $li.nextElementSibling.nextElementSibling.style.color = 'blue';
+
+        const $ul = document.querySelector('ul');
+        $ul.firstElementChild.style.color = 'green';
+
+
+        // 조작
+        // attribute -> 고정값(변하지 x) / 키와 값으로 조작 (함수를 만듦)
+        // property -> 최신 상태를 유지(변함)
+
+        // innerHTML -> text가 DOM화되어 객체로 들어감. 보안상의 약점 주의
+        document.querySelector('ul').innerHTML = '<li>HTML</li>';
+    </script>
+</body>
+
+</html>

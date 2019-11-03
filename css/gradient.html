@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS gradient</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        div {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .dawn {
+            /* chrome10+, safari5.1+ */
+            /* background: -webkit-linear-gradient(-45deg, #b3cae5 12%, #dbdde4 46%, #e4e3e4 70%, #f7ddbb 94%, #efcab2 100%); */
+            /* w3c */
+            background: linear-gradient(135deg, #b3cae5 12%, #dbdde4 46%, #e4e3e4 70%, #f7ddbb 94%, #efcab2 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+    Linear Gradient
+    Radial Gradient -->
+    <div class="dawn"></div>
+</body>
+
+</html>

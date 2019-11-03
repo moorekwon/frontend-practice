@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Position</title>
+    <style>
+        /* Static */
+        /* .parent {
+            width: 150px;
+            height: 150px;
+            background: #bcbcbc;
+            border: 1px solid #bcbcbc;
+        }
+
+        .static-box {
+            position: static;
+            background: #2E303D;
+            color: #e55c3c;
+            font-weight: bold;
+            text-align: center;
+            line-height: 150px;
+        } */
+
+        /* relative */
+        /* .parent {
+            width: 150px;
+            height: 150px;
+            background: #bcbcbc;
+            border: 1px solid #bcbcbc;
+            margin: 50px;
+        }
+
+        .relative-box {
+            position: relative;
+            top: 50px;
+            left: 50px;
+            background: #2E303D;
+            color: #e55c3c;
+            font-weight: bold;
+            text-align: center;
+            line-height: 150px;
+        } */
+
+        /* absolute */
+        /* .parent {
+            width: 200px;
+            height: 200px;
+            background: #bcbcbc;
+            border: 1px solid #bcbcbc;
+            margin: 50px 0 0 300px;
+            position: relative;
+        }
+
+        .absolute-box {
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            top: 50px;
+            left: 50px;
+            color: #e55c3c;
+            font-weight: bold;
+            text-align: center;
+            background: #2E303D;
+            line-height: 200px;
+        } */
+
+        /* fixed */
+        /* .fixed-box {
+            position: fixed;
+            color: #e55c3c;
+            font-weight: bold;
+            text-align: center;
+            background: #2E303D;
+        }
+
+        .sidebar {
+            width: 50px;
+            height: 100%;
+            top: 0;
+            right: 0;
+            padding-top: 100px;
+        }
+
+        .footer {
+            width: 100%;
+            height: 50px;
+            bottom: 0;
+            left: 0;
+            line-height: 50px;
+        } */
+
+        /* Z-index */
+        /* .normal-box {
+            width: 100px;
+            height: 100px;
+        }
+
+        .absolute-box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+
+        z-index -> posiiton이 static 외인 요소에만 적용
+        .orange {
+            background-color: orange;
+            z-index: 1000;
+        }
+
+        .red {
+            background-color: red;
+            left: 50px;
+            top: 50px;
+            z-index: 100;
+        }
+
+        .green {
+            background-color: green;
+            left: 100px;
+            top: 100px;
+            z-index: 10;
+        }
+
+        .blue {
+            background-color: blue;
+            left: 150px;
+            top: 150px;
+            z-index: 1;
+        } */
+
+        /* overflow */
+        div {
+            width: 150px;
+            height: 150px;
+            padding: 10px;
+            margin: 30px;
+            font-size: 1.2em;
+            border-radius: 6px;
+            border-color: gray;
+            border-style: dotted;
+            float: left;
+        }
+
+        .visible {
+            overflow: visible;
+        }
+
+        .hidden {
+            overflow: hidden;
+        }
+
+        /* 영역이 벗어나든 안벗어나든 상관없이 scroll 표시 */
+        .scroll {
+            overflow: scroll;
+        }
+
+        /* 영역이 벗어나면 scroll 표시 */
+        .auto {
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- static -->
+    <!-- <div class="parent">
+        <div class="static-box">static box</div>
+    </div> -->
+
+    <!-- relative -->
+    <!-- <div class="parent">
+        <div class="relative-box">relative box</div>
+    </div> -->
+
+    <!-- absolute -->
+    <!-- <div class="parent">
+        <div class="absolute-box">absolute box (in parent)</div>
+    </div>
+    <div class="absolute-box">absolute box (no parent)</div> -->
+
+    <!-- fixed -->
+    <!-- <div class="fixed-box sidebar">fixed box (side-bar)</div>
+    <div class="fixed-box footer">fixed box (footer</div> -->
+
+    <!-- z-index -->
+    <!-- <div class="normal-box orange"></div>
+    <div class="absolute-box red"></div>
+    <div class="absolute-box green"></div>
+    <div class="absolute-box blue"></div> -->
+
+    <!-- overflow -->
+    <h1>overflow</h1>
+    <div class="visible">
+        <h3>visible</h3>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+    </div>
+    <div class="hidden">
+        <h3>hidden</h3>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+    </div>
+    <div class="scroll">
+        <h3>scroll</h3>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+    </div>
+    <div class="auto">
+        <h3>auto</h3>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+    </div>
+</body>
+
+</html>

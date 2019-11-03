@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List</title>
+    <style>
+        .todo-check:checked + .todo-content {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="todo-input" placeholder="Enter todo!">
+    <button class="todo-btn">add</button>
+    <ol class="todo-list"></ol>
+</body>
+<script>
+    const $todoInput = document.querySelector('.todo-input');
+    const $todoBtn = document.querySelector('.todo-btn');
+    const $todoList = document.querySelector('.todo-list');
+
+    const render = function () {
+        let html = '';
+
+        todos.forEach(todo => {
+            html += `
+            <li id="${todo.id}">
+                <label>
+                    <input type="checkbox" class="todo-check" ${todo.completed ? 'checked': ''}>
+                    <span class="todo-content">${todo.content}</span>
+                </label>
+                <button class="todo-remove">X</button>
+            </li>
+            `;
+        });
+        $todoList.innerHTML = html;
+    };
+
+    const getTodos = function () {
+        todos = [
+            { id: 1, content: 'HTML', completed: false },
+            { id: 2, content: 'CSS', completed: true },
+            { id: 3, content: 'JavaScript', completed: false }
+        ];
+        render();
+    };
+
+    const addTodoBtn = function (e) {
+        const content = $todoInput.value.trim();
+        if (!content) return;
+
+        const id = Math.max(...todos.map(todo => todo.id)) + 1;
+        todos = [...todos, { id, content, completed: false }];
+        render();
+    };
+
+    const addTodoEnter = function (e) {
+        if (e.keyCode !== 13) return;
+        addTodoBtn();
+    };
+
+    const toggleCompleted = function (e) {
+        const id = +e.target.parentNode.parentNode.id;
+        todos = todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo);
+        render();
+    };
+
+    const removeTodo = function (e) {
+        if (!e.target.classList.contains('todo-remove')) return;
+        const id = +e.target.parentNode.id;
+        todos = todos.filter(todo => todo.id !== id);
+        render();
+    };
+
+    window.onload = getTodos;
+
+    $todoBtn.onclick = addTodoBtn;
+    $todoInput.onkeyup = addTodoEnter;
+    $todoList.onchange = toggleCompleted;
+    $todoList.onclick = removeTodo;
+</script>
+</html>

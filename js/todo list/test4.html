@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todos</title>
+</head>
+
+<body>
+    <input type="text" class="input-todo" placeholder="Enter todo!">
+    <!-- <button class="add">add</button> -->
+    <ul class="todos"></ul>
+</body>
+
+<script>
+    // Model
+    let todos = [];
+
+    // DOMs
+    const $todos = document.querySelector('.todos');
+    const $input = document.querySelector('.input-todo');
+    const $checkbox = document.querySelector('.cb');
+
+    const render = function () {
+        let html = '';
+
+        todos.forEach(todo => {
+            html += `
+            <li id="${todo.id}">
+                <label>
+                    <input type="checkbox" class="cb" ${todo.completed ? 'checked': ''}>
+                    <span>${todo.content}</span>
+                </label>
+                <button class="remove">X</button>
+            </li>`;
+        });
+
+        $todos.innerHTML = html;
+    };
+
+    const getTodos = function () {
+        // TODO: 서버로부터 todos 데이터를 취득 (Ajax)
+        todos = [
+            // {} => todos, {} 안의 요소 => todo
+            { id: 1, content: 'HTML', completed: false },
+            { id: 2, content: 'CSS', completed: true },
+            { id: 3, content: 'JavaScript', completed: false }
+        ];
+        render();
+    };
+
+    const addTodo = function (e) {
+        const content = $input.value.trim();
+        if ((e.keyCode !== 13) || (content === '')) return;
+
+        $input.value = '';
+        // content => content: content
+        todos = [...todos, { id: 10, content, completed: false }];
+        // 새로 만들고 다시 호출
+        render();
+    };
+
+    const toggleCompleted = function (e) {
+        const id = +e.target.parentNode.parentNode.id;
+        todos = todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed} : todo);
+        // console.log(todos);
+        render();
+    };
+
+    const removeTodo = function (e) {
+        if (!e.target.classList.contains('remove')) return;
+        const id = +e.target.parentNode.id;
+        todos = todos.filter(todo => todo.id !== id);
+        render();
+    };
+
+    // Events
+    window.onload = getTodos;
+    $input.onkeyup = addTodo;
+    // $checkbox가 아니라 $todos
+    $todos.onchange = toggleCompleted;
+    $todos.onclick = removeTodo;
+</script>
+</html>

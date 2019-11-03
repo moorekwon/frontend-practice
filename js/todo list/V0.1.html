@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List</title>
+    <style>
+        .todo-check:checked + .todo-content {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="todo-input" placeholder="Enter todo!">
+    <button class="todo-btn">add</button>
+    <ol class="todo-list"></ol>
+</body>
+
+<script>
+    const $todoInput = document.querySelector('.todo-input');
+    const $todoBtn = document.querySelector('.todo-btn');
+    const $todoList = document.querySelector('.todo-list');
+
+    const executeClick = function (e) {
+        if (!$todoInput.value.trim()) return;
+
+        $todoList.innerHTML += `
+        <li>
+            <label><input type="checkbox" class="todo-check">
+                <span class="todo-content">${$todoInput.value}</span>
+                <button class="remove">X</button>
+            </label>
+        </li>`;
+    };
+
+    const executeEnter = function (e) {
+        if (e.keyCode !== 13) return;
+        executeClick();
+    };
+
+    $todoInput.addEventListener('keyup', executeEnter);
+    $todoBtn.addEventListener('click', executeClick);
+
+    $todoList.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('remove')) return;
+        $todoList.removeChild(e.target.parentNode.parentNode);
+    });
+</script>
+</html>

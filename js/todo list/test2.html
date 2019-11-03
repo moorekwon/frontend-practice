@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todos</title>
+    <style>
+        .cb:checked+.content {
+            text-decoration: line-through;
+        }
+
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="input-todo" placeholder="Enter todo!">
+    <!-- <button class="add">add</button> -->
+    <ul class="todos"></ul>
+</body>
+
+<script>
+    const $inputTodo = document.querySelector('.input-todo');
+    // const $addButton = document.querySelector('.add');
+    const $todos = document.querySelector('.todos');
+
+    $inputTodo.onkeyup = e => {
+        // console.log(e.keyCode);
+        if (($inputTodo.value.trim() === '') || (e.keyCode !== 13)) return;
+
+        $todos.innerHTML += `
+        <li>
+            <label><input type="checkbox" class="cb">
+                <span class="content">${$inputTodo.value}</span>
+                <button class="remove">X</button>
+            </lable>
+        </li>`;
+
+        $inputTodo.value = '';
+    };
+
+    // $addButton.onclick = function () {
+    //     if (!$inputTodo.value) return;
+        // console.log($inputTodo.value);
+
+        // li, label 태그는 change 이벤트를 발생시킬 수 없음
+        // $todos.innerHTML += `<li><label><input type="checkbox"><span>${$inputTodo.value}</span></lable></li>`;
+        // $todos.innerHTML += `
+        // <li>
+        //     <label><input type="checkbox" class="cb">
+        //         <span class="content">${$inputTodo.value}</span>
+        //         <button class="remove">X</button>
+        //     </lable>
+        // </li>`;
+
+        // $inputTodo.value = '';
+    // };
+
+    // 화살표 함수는 상위 스코프, 즉 전역을 this로 바인딩
+    $todos.addEventListener('click', e => {
+        // 'remove' class가 없으면 반응하지 않는다
+        if (!e.target.classList.contains('remove')) return;
+        // this는 $todos가 아니라 전역 객체
+        // this.removeChild(e.target.parentNode.parentNode);
+        $todos.removeChild(e.target.parentNode.parentNode);
+    });
+
+    // $todos.onchange = function ({
+    //     target
+    // }) {
+    //     if (target.checked) {
+            // target.nextSibling.className = 'completed';
+    //         target.textSibling.classList.add('completed');
+    //     } else {
+    //         target.nextSibling.classList.remove('completed');
+    //     }
+    // };
+</script>
+
+</html>

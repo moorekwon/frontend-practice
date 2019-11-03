@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS display, visibility, opacity</title>
+    <style>
+        div, img {
+            float: left;
+            width: 150px;
+            height: 150px;
+            margin: 30px;
+            background-color: blue;
+            color: white;
+            opacity: 0.5;
+            transition: opacity 1s;
+        }
+
+        div:hover, img:hover {
+            opacity: 1.0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>opacity: 0.5</div>
+    <img src="https://poiemaweb.com/img/doug.jpg" alt="doug">
+</body>
+
+</html>

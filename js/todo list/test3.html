@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todos</title>
+</head>
+
+<body>
+    <input type="text" class="input-todo" placeholder="Enter todo!">
+    <button class="add">add</button>
+    <ul class="todos"></ul>
+</body>
+
+<script>
+    // Model
+    let todos = [];
+
+    // DOMs
+    const $todos = document.querySelector('.todos');
+
+    // HTML을 만들어서 초기 표시
+    const render = function () {
+        let html = '';
+
+        todos.forEach(todo => {
+            html += `
+            <li id="${todo.id}">
+                <label>
+                    <input type="checkbox" ${todo.completed ? 'checked': ''}>
+                    <span>${todo.content}</span>
+                    <button>X</button>
+                </label>
+            </li>`;
+        });
+
+        $todos.innerHTML = html;
+    };
+
+    const getTodos = function () {
+        // TODO: 서버로부터 todos 데이터를 취득 (Ajax)
+        todos = [
+            // {} => todos, {} 안의 요소 => todo
+            { id: 1, content: 'HTML', completed: false },
+            { id: 2, content: 'CSS', completed: true },
+            { id: 3, content: 'JavaScript', completed: false }
+        ];
+        console.log(todos);
+        render();
+    };
+
+    // 서버에서 데이터를 갖고옴
+    window.onload = getTodos;
+</script>
+</html>

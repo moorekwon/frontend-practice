@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="increase">+</button>
+    <span class="counter">0</span>
+    <button class="decrease">-</button>
+
+    <script>
+        // const $counter = document.querySelector('.counter');
+
+        // const counter = (function () {
+        //     let num = 0;
+
+        //     return {
+        //         increase() {
+        //             $counter.textContent = ++num;
+        //         },
+        //         decrease() {
+        //             if (num <= 0) return;
+        //             $counter.textContent = --num;
+        //         }
+        //     };
+        // }());
+
+        // document.querySelector('.increase').onclick = counter.increase;
+        // document.querySelector('.decrease').onclick = counter.decrease;
+
+        // 생성자 함수로 표현
+        // const $counter = document.querySelector('.counter');
+
+        // const Counter = (function () {
+        //     let num = 0;
+        //     function Counter() {}
+
+        //     Counter.prototype.increase = function () {
+        //         $counter.textContent = ++num;
+        //     };
+
+        //     Counter.prototype.decrease = function () {
+        //         if (num <= 0) return;
+        //         $counter.textContent = --num;
+        //     };
+
+        //     return Counter;
+        // }());
+
+        // const counter = new Counter();
+
+        // document.querySelector('.increase').onclick = counter.increase;
+        // document.querySelector('.decrease').onclick = counter.decrease;
+
+        const counter = (function () {
+            let counter = 0;
+
+            return function (predicate) {
+                counter = predicate(counter);
+                return counter;
+            };
+        }());
+
+        function increase(n) {
+            return ++n;
+        }
+
+        function decrease(n) {
+            return --n;
+        }
+
+        console.log(counter(increase));
+        console.log(counter(increase));
+
+        console.log(counter(decrease));
+        console.log(counter(decrease));
+    </script>
+</body>
+
+</html>

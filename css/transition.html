@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS transition</title>
+    <style>
+        /* transition-timing-function */
+        /* div {
+            font: bold 16px/50px "Open Sans";
+            color: white;
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            margin-bottom: 10px;
+            transition: width 2s;
+        }
+
+        div:nth-child(1) {
+            transition-timing-function: ease;
+        }
+
+        div:nth-child(2) {
+            transition-timing-function: linear;
+        }
+
+        div:nth-child(3) {
+            transition-timing-function: ease-in;
+        }
+
+        div:nth-child(4) {
+            transition-timing-function: ease-out;
+        }
+
+        div:nth-child(5) {
+            transition-timing-function: ease-in-out;
+        }
+
+        div:hover {
+            width: 300px;
+        } */
+
+        /* transition-delay */
+        /* div {
+            font: bold 16px/50px "Open Sans";
+            color: white;
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            margin-bottom: 10px;
+            transition: width 1s;
+        }
+
+        div:nth-of-type(1) {
+            transition-delay: 0s;
+        }
+
+        div:nth-of-type(2) {
+            transition-delay: 1s;
+        }
+
+        div:nth-of-type(3) {
+            transition-delay: 3s;
+        }
+
+        div:hover {
+            width: 300px;
+        } */
+
+        /* trainsition shorthand
+        transition: property duration function delay */
+        div {
+            font: bold 0.5em/50px "Open Sans";
+            color: white;
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: red;
+        }
+
+        div:nth-of-type(1) {
+            /* property duration function delay */
+            transition: width 1s ease-in 1s;
+        }
+
+        div:nth-of-type(2) {
+            /* duration */
+            transition: 1s;
+        }
+
+        div:nth-of-type(3) {
+            /* property duration */
+            transition: width 1s;
+        }
+
+        div:nth-of-type(4) {
+            /* duration function */
+            transition: 1s ease-in;
+        }
+
+        div:nth-of-type(5) {
+            /* duration delay */
+            transition: 1s 1s;
+        }
+
+        div:hover {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- transitino-timing-function -->
+    <!-- <h3>transition-timing-function</h3>
+    <div>ease</div>
+    <div>linear</div>
+    <div>ease-in</div>
+    <div>ease-out</div>
+    <div>ease-in-out</div> -->
+
+    <!-- transition-delay -->
+    <!-- <h3>transition-delay</h3>
+    <div>0s</div>
+    <div>1s</div>
+    <div>3s</div> -->
+
+    <!-- transition shorthand
+    transition: property duration function delay -->
+    <div>width 1s ease-in 1s</div>
+    <div>1s</div>
+    <div>width 1s</div>
+    <div>1s ease-in</div>
+    <div>1s 1s</div>
+    <script>
+        // const elem = document.querySelector('div');
+
+        // elem.addEventListener('mouseover', function () {
+        //     this.classList.add('hover');
+        // });
+
+        // elem.addEventListener('mouseleave', function() {
+        //     this.classList.remove('hover');
+        // });
+    </script>
+</body>
+
+</html>

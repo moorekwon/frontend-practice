@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Float</title>
+    <style>
+        /* .box {
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 50px;
+            height: 50px;
+            margin: 0 10px;
+            padding: 10px;
+        }
+
+        .d1 {
+            float: left;
+            background: red;
+        }
+
+        float 선언하지 않는 경우 margin 사라지는 문제 해결 -> overflow: hidden;
+        .d2 {
+            overflow: hidden;
+            background: orange;
+        } */
+
+        /* .container 부모요소 높이가 d1, d2 자식요소의 float 선언으로 인하여 반영되지 못함 ->
+        해결 1. overflow: hidden;
+        해결 2. 빈 요소 생성 후 clear:both;
+        해결 3. ::after 가상 요소 선택자 이용
+        해결 4. float 프로퍼티 대신 display: inline-block; 선언 */
+        .container {
+            color: white;
+            text-align: center;
+            padding: 10px;
+            background-color: #def0c2;
+            /* 해결 1 */
+            /* overflow: hidden; */
+            /* 해결 4
+            두 자식 요소 사이 정의하지 않은 공백 자동 지정되어 제거 필요 */
+            font-size: 0;
+        }
+
+        /* 해결 3 */
+        /* .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        } */
+
+        .d1, .d2 {
+            /* 해결 4 */
+            display: inline-block;
+            /* 부모 요소에서 제거한 font-size 재지정 */
+            font-size: 1rem;
+            /* float: left; */
+            width: 50%;
+            padding: 20px 0;
+        }
+
+        .d1 {
+            background-color: #59b1f6;
+        }
+
+        .d2 {
+            background-color: #ffb5b4;
+        }
+        
+        /* 해결 2 */
+        /* .clear {
+            height: 0;
+            clear: both;
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- float 중앙 가로 정렬 -> width값 지정, margin: 0 auto; -->
+    <!-- width 지정하지 않을 경우, inline 요소처럼 content에 맞게 크기 최소화 -->
+    <!-- <div class="box d1">float: left;</div>
+    <div class="box d2">div</div> -->
+
+    <!-- 해결 3 -->
+    <div class="container clearfix">
+        <div class="d1">1</div>
+        <div class="d2">2</div>
+        <!-- 해결 2 -->
+        <!-- <div class="clear"></div> -->
+    </div>
+    <div style="background: red; padding: 10px; color: white;">3</div>
+</body>
+
+</html>
