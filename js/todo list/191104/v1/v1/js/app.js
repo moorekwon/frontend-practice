@@ -1,7 +1,7 @@
-let todos = [];
+// let todos = [];
 
-const $todos = document.querySelector('.todos');
-const $input = document.querySelector('.input-todo');
+const $todoList = document.querySelector('.todos');
+const $inputTodo = document.querySelector('.input-todo');
 const $completeAll = document.querySelector('#ck-complete-all');
 const $clearCompleted = document.querySelector('.clear-completed > .btn');
 const $completedTodos = document.querySelector('.completed-todos');
@@ -9,10 +9,9 @@ const $activeTodos = document.querySelector('.active-todos');
 
 
 const getTodos = () => {
-    // 서버로부터 todos를 취득
     todos = [
-        { id: 1, contnet: 'HTML', completed: false },
-        { id: 2, content: 'CSS', completed: true },
+        { id: 1, content: 'HTML', completed: false },
+        { id: 2, content: 'CSS', completed: true }
     ];
     todos.sort((todo1, todo2) => todo2.id - todo1.id);
 };
@@ -20,25 +19,38 @@ const getTodos = () => {
 const render = () => {
     let html = '';
 
-    todos.forEach(({ id, content, completed }) => {
-        html += `
-        <li id="${id}" class="todo-item">
-            <input class="checkbox" type="checkbox" id="ck-${id}" ${completed ? 'checked' : ''}>
-            <label for="ck-${id}">${content}</label>
-            <i class="remove-todo far fa-times-circle"></i>
-        </li>`;
-    });
-    $todos.innerHTML = html;
+    // todos.forEach(({ id, content, completed }) => {
+    //     html += `
+    //     <li id="${id}" class="todo-item">
+    //         <input class="checkbox" type="checkbox" id="ck-${id}" ${completed ? 'checked' : ''}>
+    //         <label for="ck-${id}">${content}</label>
+    //         <i class="remove-todo far fa-times-circle"></i>
+    //     </li>`;
+    // });
 
-    // html의 text 바꾸기
+    todos.forEach(todo => {
+        html += `
+        <li id="${todo.id}" class="todo-item">
+            <input class="checkbox" type="checkbox" id="ck-${todo.id}" ${todo.completed ? 'checked' : ''}>
+            <label for="ck-${todo.id}">${todo.content}</label>
+            <i class="remove-todo far fa-times-circle"></i>
+      </li>`;
+    });
+    $todoList.innerHTML = html;
+
     $completedTodos.textContent = todos.filter(todo => todo.completed).length;
     $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
 };
 
 
-const generateId = () => {todos.length ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;};
+// const generateId = () => {todos.length ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;};
+
+const generateId = () => {
+    return todos.length ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
+};
 
 const addTodo = content => {
+    // !!!
     todos = [{ id: generateId(), content, completed: false }, ...todos];
     console.log('[addTodo]', todos);
 };
@@ -54,13 +66,14 @@ const removeTodo = id => {
 };
 
 const completeAll = completed => {
-    todos = todos.map(todo => {...todo, completed});
-    console.log('[completeAll]', todos);
+    // !!!
+    todos = todos.map(todo => ({...todo, completed}));
+    console.log('[completeAll', todos);
 };
 
-const removeCompletedAll = () => {
+const removeCompleteAll = () => {
     todos = todos.filter(todo => !todo.completed);
-    console.log('[removeCompletedAll]', todos);
+    console.log('[removeCompleteAll]', todos);
 };
 
 
@@ -70,31 +83,60 @@ window.onload = () => {
 };
 
 
-$input.onkeyup = ({ target, keyCode }) => {
-    const content = target.value.trim();
-    if (content === '' || keyCode !== 13) return;
-    target.value = '';
+// $inputTodo.onkeyup = ({ target, keyCode }) => {
+//     const content = target.value.trim();
+//     if (content === '' || keyCode !== 13) return;
+//     target.value = '';
+//     addTodo(content);
+//     render();
+// };
+
+$inputTodo.onkeyup = (e) => {
+    const content = e.target.value.trim();
+    if (!content || e.keyCode !== 13) return;
+    e.target.value = '';
     addTodo(content);
     render();
 };
 
-$todos.onchange = ({ target }) => {
-    toggleCompleted(target.parentNode.id);
+// $todoList.onchange = ({ target }) => {
+//     toggleCompleted(target.parentNode.id);
+//     render();
+// };
+
+$todoList.onchange = (e) => {
+    toggleCompleted(e.target.parentNode.id);
     render();
 };
 
-$todos.onclick = ({ target }) => {
-    if (!target.classList.continas('remove-todo')) return;
-    removeTodo(target.parentNode.id);
+// $todoList.onclick = ({ target }) => {
+//     if (!target.classList.continas('remove-todo')) return;
+//     removeTodo(target.parentNode.id);
+//     render();
+// };
+
+$todoList.onclick = (e) => {
+    if (!e.target.classList.contains('remove-todo')) return;
+    removeTodo(e.target.parentNode.id);
     render();
 };
 
-$completeAll.onchange = ({ target }) => {
-    completeAll(target.checked);
+// $completeAll.onchange = ({ target }) => {
+//     completeAll(target.checked);
+//     render();
+// };
+
+$completeAll.onchange = (e) => {
+    completeAll(e.target.checked);
     render();
 };
 
-$clearCompleted.onclick = ({ target }) => {
-    removeCompletedAll();
+// $clearCompleted.onclick = ({ target }) => {
+//     removeCompleteAll();
+//     render();
+// };
+
+$clearCompleted.onclick = () => {
+    removeCompleteAll();
     render();
 };
