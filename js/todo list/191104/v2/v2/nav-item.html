@@ -38,14 +38,19 @@
   <script>
     const $nav = document.querySelector('.nav');
 
-    $nav.onclick = e => {
-      if (e.target.classList.contains('nav')) return;
-      [...$nav.children].forEach($navItem => {
-        // if ($navItem.id === e.target) $navItem.classList.add('active');
-        // else $navItem.classList.remove('active');
-        $navItem.classList.toggle('active', $navItem === e.target);
-      })
-    };
+$nav.onclick = (e) => {
+  if (e.target.classList.contains('nav')) return;
+  [...$nav.children].forEach($navItem => {
+    // !!! 실행되지 않음
+    // if ($navItem.id === e.target) $navItem.classList.add('active');
+    // else $navItem.classList.remove('active');
+
+    // toggle(string[, force]) -> 클래스 값을 토글링
+    // 첫번째 인수는 추가할 클래스 네임
+    // 두번째 인수가 true면 추가, false면 제거
+    $navItem.classList.toggle('active', $navItem === e.target);
+  })
+};
   </script>
 </body>
 </html>
