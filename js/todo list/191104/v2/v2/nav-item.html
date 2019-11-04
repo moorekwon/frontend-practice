@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +13,13 @@
       list-style: none;
     }
 
-    .nav > li {
+    .nav>li {
       padding: 4px 10px;
       border-radius: 4px;
       cursor: pointer;
     }
 
-    .nav > li.active {
+    .nav>li.active {
       color: #fff;
       background-color: #23b7e5;
     }
@@ -28,6 +29,7 @@
     }
   </style>
 </head>
+
 <body>
   <ul class="nav">
     <li id="all" class="active">All</li>
@@ -38,19 +40,24 @@
   <script>
     const $nav = document.querySelector('.nav');
 
-$nav.onclick = (e) => {
-  if (e.target.classList.contains('nav')) return;
-  [...$nav.children].forEach($navItem => {
-    // !!! 실행되지 않음
-    // if ($navItem.id === e.target) $navItem.classList.add('active');
-    // else $navItem.classList.remove('active');
+    $nav.onclick = (e) => {
+      if (e.target.classList.contains('nav')) return;
+      [...$nav.children].forEach($navItem => {
+        // !!! 실행되지 않음
+        // if ($navItem.id === e.target) $navItem.classList.add('active');
+        // else $navItem.classList.remove('active');
 
-    // toggle(string[, force]) -> 클래스 값을 토글링
-    // 첫번째 인수는 추가할 클래스 네임
-    // 두번째 인수가 true면 추가, false면 제거
-    $navItem.classList.toggle('active', $navItem === e.target);
-  })
-};
+        // !!! 실행되지 않음
+        // if ($navItem === target) $navItem.classList.add('active');
+        // else $navItem.classList.remove('active');
+
+        // toggle(string[, force]) -> 클래스 값을 토글링
+        // 첫번째 인수는 추가할 클래스 네임
+        // 두번째 인수가 true면 추가, false면 제거
+        $navItem.classList.toggle('active', $navItem === e.target);
+      })
+    };
   </script>
 </body>
+
 </html>
