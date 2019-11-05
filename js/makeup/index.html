@@ -24,7 +24,38 @@
         { id: 3, content: 'JavaScript', completed: false },
     ];
 
-    const addTodo = () => {};
+    const $ul = document.querySelector('.todos');
+    const $input = document.querySelector('.input');
+
+    // $ul.innerHTML = '<p>최성진</p>';
+
+    const render = () => {
+        $ul.innerHTML = '';
+        todos.forEach(item => {
+            $ul.innerHTML += `
+          <li>
+            <input id="${item.id}" type="checkbox" class="input_checkbox" ${item.completed ? 'checked' : null}>
+            <label for="${item.id}">${item.content}</label>
+            <button class="remove">X</button>
+          </li>
+        `;
+        })
+    };
+    render();
+
+    $input.addEventListener('keyup', (sungjin) => {
+        if (sungjin.keyCode !== 13) return;
+        todos = [...todos, { id: 4, content: $input.value, completed: false }];
+        $input.value = '';
+        render();
+    });
+    // input창에 text입력한 후 엔터를 누르면 todos에 할일이 추가돼요
+
+    const changeChecked = () => {
+        todos = todos.map(item => {
+            return {...item, completed: !item.completed };
+        })
+    };
 </script>
 
 </html>
