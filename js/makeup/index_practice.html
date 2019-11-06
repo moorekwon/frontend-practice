@@ -18,16 +18,17 @@
 </body>
 
 <script>
+    const $input = document.querySelector('.input');
     const $todoList = document.querySelector('.todos');
-    const $inputTodo = document.querySelector('.input');
 
     let todos = [
-        { id: 1, content: 'HTML', completed: false },
-        { id: 2, content: 'CSS', completed: true }
+        { id: 1, content: 'Javascript', completed: false },
+        { id: 2, content: 'HTML', completed: false }
     ];
 
     const render = () => {
         $todoList.innerHTML = '';
+
         todos.forEach(todo => {
             $todoList.innerHTML += `
             <li>
@@ -35,20 +36,18 @@
                 <label for="${todo.id}">${todo.content}</label>
                 <button>X</button>
             </li>`;
-        })
+        });
     };
     render();
 
-    const changeChecked = () => {
-        todos = todo.map(todo => {
-            return {...todo, completed: !todo.completed};
-        })
-    };
+    // const generateId = ;
 
-    $inputTodo.addEventListener('keyup', (e) => {
-        if (e.keyCode !== 13) return;
-        todos = [...todos, { id: 4, content: $inputTodo.value, completed: false }];
-        $inputTodo.value = '';
+    $input.addEventListener('keyup', (e) => {
+        const content = $input.value.trim();
+        if (e.keyCode !== 13 || content === '') return;
+
+        todos = [...todos, { id: 3, content, completed: false }];
+        $input.value = '';
         render();
     });
 </script>

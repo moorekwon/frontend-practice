@@ -158,21 +158,46 @@
 // console.log(numbers);
 
 
-class Prefixer {
-  constructor(prefix) {
-    this.prefix = prefix;
-    console.log(this);
-  }
+// class Prefixer {
+//   constructor(prefix) {
+//     this.prefix = prefix;
+//     console.log(this);
+//   }
 
-  prefixArray(arr) {
-    return arr.map(function (item) {
-      console.log(this);
-      return this.prefix + item;
-    }, this);
+//   prefixArray(arr) {
+//     return arr.map(function (item) {
+//       console.log(this);
+//       return this.prefix + item;
+//     }, this);
+//   }
+// }
+
+// const pre = new Prefixer('-webkit-');
+// const preArr = pre.prefixArray(['linear-gradient', 'border-radius']);
+// console.log(preArr);
+
+// const numbers = [1, 2, 3];
+// let pows = [];
+
+// for (let i = 0; i < numbers.length; i++) {
+//   pows.push(numbers[i] ** 2);
+// }
+
+// numbers.forEach(item => pows.push(item ** 2));
+
+// console.log(pows);
+
+// const numbers = [1, 2, 3];
+// numbers.forEach((item, index, self) => self[index] = Math.pow(item, 2));
+// console.log(numbers);
+
+class Numbers {
+  numberArray = [];
+  multiply(arr) {
+    arr.forEach(function (item) {
+      this.numberArray.push(item * item);
+    });
   }
 }
 
-const pre = new Prefixer('-webkit-');
-const preArr = pre.prefixArray(['linear-gradient', 'border-radius']);
-console.log(preArr);
-
+const numbers = new Number();
