@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>V0.2 makeup</title>
+</head>
+
+<body>
+    <input type="text" class="input-todo" placeholder="Enter todo!">
+    <ul class="todo-list"></ul>
+</body>
+
+<script>
+    const $inputTodo = document.querySelector('.input-todo');
+    const $todoList = document.querySelector('.todo-list');
+
+
+    let todos = [
+        { id: 1, content: 'HTML', completed: false },
+        { id: 2, content: 'CSS', completed: true},
+        { id: 3, content: 'JavaScript', completed: false }
+    ];
+
+    const render = () => {
+        let html = '';
+
+        todos.forEach(todo => {
+            html += `
+            <li id="${todo.id}">
+                <label>
+                    <input type="checkbox" ${todo.completed ? 'checked' : ''}>
+                    ${todo.content}
+                </label>
+                <button class="btn-remove">X</button>
+            </li>`;
+        });
+        $todoList.innerHTML = html;
+        console.log('[todos]', todos);
+    };
+    render();
+
+
+    const generateId = () => todos.length ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
+
+    $inputTodo.addEventListener('keyup', ({ target, keyCode }) => {
+        const content = target.value.trim();
+        if (content === '' || keyCode !== 13) return;
+        todos = [...todos, { id: generateId(), content, completed: false }];
+        target.value = '';
+        render();
+    });
+
+    $todoList.addEventListener('change', ({ target }) => {
+        todos = todos.map(todo => +target.parentElement.parentElement.id === todo.id ? {...todo, completed: target.checked} : todo);
+        render();
+    });
+
+    $todoList.addEventListener('click', ({ target }) => {
+        if (!target.classList.contains('btn-remove')) return;
+        todos = todos.filter(todo => todo.id !== +target.parentElement.id);
+        render();
+    });
+</script>
+</html>

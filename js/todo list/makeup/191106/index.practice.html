@@ -44,14 +44,15 @@
         todos.forEach(todo => {
             html += `
             <li id="${todo.id}">
-            <label>
-                <input type="checkbox" ${todo.completed ? 'checked' : ''}>
-                ${todo.content}
-            </label>
-            <button class="remove">X</button>
+                <label>
+                    <input type="checkbox" ${todo.completed ? 'checked' : ''}>
+                    ${todo.content}
+                </label>
+                <button class="remove">X</button>
             </li>`;
         });
         $todoList.innerHTML = html;
+        console.log(todos);
     };
     render();
 
@@ -59,6 +60,7 @@
         const content = $inputTodo.value.trim();
         if (e.keyCode !== 13 || !content) return;
         todos = [...todos, {id: 4, content, completed: false}];
+        $inputTodo.value = '';
         render();
     });
 
@@ -75,11 +77,7 @@
 
     $todoList.addEventListener('click', (e) => {
         if (!e.target.classList.contains('remove')) return;
-
-        // todos = todos.filter(todo => todo.id !== +e.target.parentNode.id);
-        todos = todos.filter(todo => {
-            if (todo.id !== +e.target.parentElement.id) return todo;
-        })
+        todos = todos.filter(todo => todo.id !== +e.target.parentElement.id);
         render();
     });
 </script>
