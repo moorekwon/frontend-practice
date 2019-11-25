@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="button">와우</button>
+
+    <script>
+        const $button = document.querySelector('.button');
+
+        // ajax 함수실행문
+        // 실행문에서 던진 callBack 함수를 받음
+        const ajax = (method, url, callBack, payload) => {
+            const xhr = new XMLHttpRequest();
+
+            xhr.open(method, url);
+            xhr.setRequestHeader('content-type', 'application/json');
+            xhr.send(JSON.stringify(payload));
+
+            // 함수 안에 (callBack) 함수를 사용함으로써 순서 보장
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                if (xhr.status === 200 || xhr.status === 201) {
+                    // callBack 함수의 인수
+                    callBack(JSON.parse(xhr.response));
+                } else {
+                    console.error('Error!');
+                }
+            };
+        };
+
+        $button.addEventListener('click', () => {
+            getTodo();
+            addTodo();
+        })
+
+        const getTodo = () => {
+            // callBack 함수의 매개변수
+            ajax('GET', 'http://localhost:3000/todos', (item) => {
+                console.log('[getTodo]', item);
+            });
+        };
+
+        const addTodo = () => {
+            ajax('POST', 'http://localhost:3000/todos', (item) => {
+                console.log('[addTodo]', item);
+            }, { id: 4, content: 'Python', completed: false });
+        };
+    </script>
+</body>
+
+</html>

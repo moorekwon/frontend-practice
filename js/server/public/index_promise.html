@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="button">와우</button>
+
+    <script>
+        const $button = document.querySelector('.button');
+
+        const ajax = (method, url, payload) => {
+            // 통신 메소드를 Promise로 감싸줌
+            // 매개변수 resolve(성공 경우), reject(실패 경우) -> callBack 함수 필요없어짐
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+
+                xhr.open(method, url);
+                xhr.setRequestHeader('content-type', 'application/json');
+                xhr.send(JSON.stringify(payload));
+
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        resolve(JSON.parse(xhr.response));
+                    } else {
+                        reject(console.error('Error!'));
+                    }
+                };
+            });
+        };
+
+        $button.addEventListener('click', () => {
+            getTodo();
+            addTodo();
+        })
+
+        const getTodo = () => {
+            // callBack 함수 대신 .then(callBack 함수) 사용
+            ajax('GET', 'http://localhost:3000/todos')
+                // .then()이 반환하는 Promise 객체의 매개변수로 then(함수)의 함수가 들어감
+                .then((item) => {
+                    console.log('[getTodo]', item);
+                })
+        };
+
+        const addTodo = () => {
+            // 세번째 인수 payload
+            ajax('POST', 'http://localhost:3000/todos', {
+                    id: 4,
+                    content: 'Python',
+                    completed: false
+                })
+                .then((item) => {
+                    todos = item;
+                    console.log('[addTodo]', todos);
+                })
+        };
+    </script>
+</body>
+
+</html>

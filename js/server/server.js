@@ -18,11 +18,16 @@ app.use(express.json());
 // });
 
 app.get('/todos', (req, res) => {
+  todos = todos.sort((sort1, sort2) => sort2.id - sort1.id);
+  console.log(todos);
+
   res.send(todos);
 });
 
 app.post('/todos', (req, res) => {
-  res.send('POST');
+  console.log('[req.body]', req.body);
+  // todos = [req.body, ...todos];
+  res.send(todos);
 });
 
 app.listen(3000, () => {

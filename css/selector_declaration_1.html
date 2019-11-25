@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        ul li {
+            color: red;
+        }
+
+        #lecture>li {
+            border: 1px solid red;
+        }
+
+        ul,
+        ol {
+            background-color: powderblue;
+        }
+
+        a:link {
+            color: black;
+        }
+
+        a:visited {
+            color: red;
+        }
+        /* focus - tap */
+        a:focus {
+            color: aqua;
+        }
+        /* active - space */
+        a:active {
+            color: green;
+        }
+        input:focus {
+            background-color: black;
+            color: violet;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <ol id="lecture">
+        <li>HTML</li>
+        <li>CSS
+            <ol>
+                <li>selector</li>
+                <li>declaration</li>
+            </ol>
+        </li>
+        <li>JavaScript</li>
+    </ol>
+    <a href="https://opentutorials.org">방문</a>
+    <a href="http://naver.com">미방문</a>
+    <input type="text">
+</body>
+
+</html>

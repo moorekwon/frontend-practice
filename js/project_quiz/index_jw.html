@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Welcome to the quiz!</h1>
+        <article class="intro">게임 소개
+            <p>퀴즈의 과목을 선택후, 문제를 선택하세요.
+                문제 선택시, 포인트가 차감됩니다.
+                문제를 맞출 경우, 포인트를 2배로 돌려받습니다.
+                문제를 맞추지 못할 경우, 포인트를 잃습니다.
+            </p>
+        </article>
+        <span class="points">보유 포인트: 200P</span>
+    </header>
+    <!-- JavaScript로 onclick 시 점수별 문제 ul에 추가 -->
+    <nav class="category-select">
+        <ul class="HTML">
+            <li><button class="select-HTML">HTML</button></li>
+            <ul class="q-HTML"></ul>
+        </ul>
+        <ul class="CSS">
+            <li><button class="select-CSS">CSS</button></li>
+            <ul class="q-CSS"></ul>
+        </ul>
+        <ul class="JavaScript">
+            <li><button class="select-JS">JavaScript</button></li>
+            <ul class="q-JS"></ul>
+        </ul>
+        <button class="start">Start</button>
+    </nav>
+    <main class="question">
+        <!-- 카운트 다운 동적으로 추가 -->
+        <span class="countdown">
+            남은 시간: 00:09
+        </span>
+        <span class="points">보유 포인트: 150P</span>
+        <div class="q-container">
+            <span class="point-value">배팅 포인트: 50P</span>
+            <!-- 문제 동적으로 추가 -->
+            <article class="question">Q. 자바스크립트로 어떻게 추가할까요?</article>
+            <!-- 보기 동적으로 추가 -->
+            <ul class="options"></ul>
+        </div>
+        <button class="submit">submit</button>
+        <!-- 정답시 동적으로 추가  -->
+        `<div class="correct-wrapper">
+            <p class="obtained-points">
+                축하합니다.
+                ${point-value * 2}를 획득하였습니다.
+            </p>
+            <ul class="continue">
+                <li><button class="continue">Continue?</button></li>
+                <li><button class="quit">Quit?</button></li>
+            </ul>
+        </div>`
+        <!-- 오답시 동적으로 추가-->
+        `<div class="incorrect-wrapper">
+            <p class="lost-points">
+                오답입니다.
+                ${point-value}를 잃었습니다.
+            </p>
+            <ul class="continue">
+                <li><button class="continue">Continue?</button></li>
+                <li><button class="quit">Quit?</button></li>
+                <li><button class="double">Double Down?</button></li>
+            </ul>
+        </div>`
+        <!-- Quit시 동적으로 추가 -->
+        `<div class="final">
+            <p class="final-score">
+                최종 포인트는 ${point-value}입니다.
+                명예의 전당에 등록하시겠습니까?
+            </p>
+            <ul class="submit-score">
+                <li><button class="yes">YES</button></li>
+                <li><button class="no">NO</button></li>
+            </ul>
+        </div>`
+    </main>
+    <footer class="footer">
+        <h1>명에의 전당</h1>
+        <ul class="highscore"></ul>
+    </footer>
+</body>
+
+</html>

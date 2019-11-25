@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="button">와우</button>
+
+    <script>
+        const $button = document.querySelector('.button');
+
+        const ajax = (() => {
+            const req = (url, method, payload) => {
+                // fetch(url, 객체)
+                return fetch(url, {
+                    method: method,
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+            };
+            // req = promise
+
+            return {
+                get(url) {
+                    return req();
+                },
+                post(url, pyload) {
+                    return req(url, 'POST', payload)
+                }
+            };
+        })();
+
+        // typeof ajax = Object
+        // ajax.get
+        // ajax.post
+
+        $button.addEventListener('click', () => {
+            getTodo();
+            addTodo();
+        })
+
+        const getTodo = ('http://localhost:3000/todos') => {
+            ajax.get()
+                .then(res => res.json())
+                .then(data => console.log(data))
+        };
+
+        const addTodo = () => {
+            ajax.post('http://localhost:3000/todos', {
+                    id: 6,
+                    content: 'React',
+                    completed: false
+                })
+                .then(res => res.json())
+                .then(data => {
+                    todos = data;
+                    console.log(todos);
+                })
+        };
+    </script>
+</body>
+
+</html>

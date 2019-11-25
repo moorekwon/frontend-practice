@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos_list V.2.0.0</title>
+    <style>
+        .input_checkbox:checked+.content {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="input" placeholder="here!here!">
+    <ul class="todos">
+    </ul>
+</body>
+
+<script>
+    const $todoList = document.querySelector('.todos');
+    const $inputTodo = document.querySelector('.input');
+
+    let todos = [{
+            id: 1,
+            content: 'HTML',
+            completed: false
+        },
+        {
+            id: 2,
+            content: 'CSS',
+            completed: true
+        },
+        {
+            id: 3,
+            content: 'JavaScript',
+            completed: false
+        }
+    ];
+
+    const render = () => {
+        let html = '';
+
+        todos.forEach(todo => {
+            html += `
+            <li id="${todo.id}">
+                <label>
+                    <input type="checkbox" ${todo.completed ? 'checked' : ''}>
+                    ${todo.content}
+                </label>
+                <button class="remove">X</button>
+            </li>`;
+        });
+        $todoList.innerHTML = html;
+        console.log(todos);
+    };
+    render();
+
+    $inputTodo.addEventListener('keyup', (e) => {
+        const content = $inputTodo.value.trim();
+        if (e.keyCode !== 13 || !content) return;
+        todos = [...todos, {id: 4, content, completed: false}];
+        $inputTodo.value = '';
+        render();
+    });
+
+    $todoList.addEventListener('change', (e) => {
+        todos = todos.map(todo => todo.id === +e.target.parentElement.parentElement.id ? {...todo, completed: e.target.checked} : todo);
+        // if (todo.id === +e.target.parentElement.parentElement.id) {
+        //     return {...todo, completed: e.target.checked}
+        // } else {
+        //     return todo;
+        // }
+        // });
+        render();
+    });
+
+    $todoList.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('remove')) return;
+        todos = todos.filter(todo => todo.id !== +e.target.parentElement.id);
+        render();
+    });
+</script>
+
+</html>
