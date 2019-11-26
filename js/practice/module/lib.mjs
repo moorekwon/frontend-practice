@@ -1,1 +1,0 @@
-export default x => 2 * x;
