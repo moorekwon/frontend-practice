@@ -20,5 +20,8 @@ console.log(붕어빵틀.__proto__ === Function.prototype);
 console.log(붕어빵틀.__proto__.__proto__ === Object.prototype);
 console.log(Function.prototype.__proto__ === Object.prototype);
 
+console.log(붕어빵틀.prototype);
 
-
+붕어빵틀.prototype.가루 = '밀가루';
+console.log(붕어빵틀.prototype);
+console.log(붕어빵틀.가루);
