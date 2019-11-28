@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="post-list">
+        <li id="post-1">Item 1</li>
+        <li id="post-2">Item 2</li>
+        <li id="post-3">Item 3</li>
+        <li id="post-4">Item 4</li>
+        <li id="post-5">Item 5</li>
+        <li id="post-6">Item 6</li>
+    </ul>
+
+    <script>
+        const $postList = document.querySelector('#post-list');
+        let str = '';
+
+        const onClickToggle = ({ target }) => {
+            let innerText = target.innerText;
+
+            if ($postList.children[2].id !== target.id) return;
+            if (!str) str = innerText;
+
+            target.innerText = innerText === str ? '찍었다' : str;
+            // 동작하지 않음
+            // innerText = innerText === str ? '찍었다' : str;
+        };
+
+        $postList.onclick = onClickToggle;
+    </script>
+</body>
+
+</html>
